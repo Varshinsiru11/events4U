@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventHub Backend Test</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f9fc;
+        color: #333;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      h1 {
+        color: #2d3748;
+        margin-bottom: 30px;
+        text-align: center;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #e2e8f0;
+      }
+
+      .section {
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      h2 {
+        color: #4a5568;
+        margin-top: 0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #edf2f7;
+      }
+
+      .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      button {
+        background-color: #4f46e5;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.2s;
+      }
+
+      button:hover {
+        background-color: #3730a3;
+      }
+
+      .results {
+        background-color: #f8fafc;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 15px;
+        max-height: 200px;
+        overflow-y: auto;
+        border: 1px solid #e2e8f0;
+      }
+
+      .status {
+        padding: 8px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+      }
+
+      .success {
+        background-color: #dcfce7;
+        color: #166534;
+      }
+
+      .error {
+        background-color: #fee2e2;
+        color: #b91c1c;
+      }
+
+      pre {
+        margin: 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+
+      .navigation {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .nav-link {
+        padding: 10px 15px;
+        background-color: #e2e8f0;
+        color: #4a5568;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+      }
+
+      .nav-link:hover {
+        background-color: #cbd5e1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>EventHub Backend Test Panel</h1>
+
+      <div class="section">
+        <h2>Session Management</h2>
+        <div class="button-group">
+          <button onclick="createSession()">Create Session</button>
+          <button onclick="getSession()">Get Session Data</button>
+          <button onclick="updateSession()">Update Session</button>
+        </div>
+        <div class="results" id="session-results">
+          <p>Results will appear here...</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Event Data</h2>
+        <div class="button-group">
+          <button onclick="getAllEvents()">Get All Events</button>
+          <button onclick="getEvent('event1')">Get Event 1</button>
+          <button onclick="getEvent('event2')">Get Event 2</button>
+        </div>
+        <div class="results" id="event-results">
+          <p>Results will appear here...</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Booking Flow</h2>
+        <div class="button-group">
+          <button onclick="createBooking()">Create Booking</button>
+          <button onclick="processPayment()">Process Payment</button>
+        </div>
+        <div class="results" id="booking-results">
+          <p>Results will appear here...</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Navigation Tests</h2>
+        <div class="button-group">
+          <button onclick="testRedirectToPayment()">
+            Test Redirect to Payment
+          </button>
+          <button onclick="testRedirectToTicket()">
+            Test Redirect to Ticket
+          </button>
+          <button onclick="testRedirectToDashboard()">
+            Test Redirect to Dashboard
+          </button>
+        </div>
+        <div class="results" id="redirect-results">
+          <p>Results will appear here...</p>
+        </div>
+      </div>
+
+      <div class="navigation">
+        <a href="index.html" class="nav-link">Back to Home</a>
+        <a href="seat-booking/index.html" class="nav-link">Seat Booking</a>
+        <a href="payment-method/index.html" class="nav-link">Payment Method</a>
+      </div>
+    </div>
+
+    <script>
+      // API URL - Change this to your backend URL
+      const API_URL = "http://127.0.0.1:5000";
+
+      // Store session ID
+      let currentSessionId = "";
+      let currentBookingId = "";
+
+      // Helper to display results
+      function displayResult(elementId, success, message, data) {
+        const resultsElement = document.getElementById(elementId);
+
+        const statusDiv = document.createElement("div");
+        statusDiv.className = `status ${success ? "success" : "error"}`;
+        statusDiv.textContent = message;
+
+        const pre = document.createElement("pre");
+        pre.textContent = JSON.stringify(data, null, 2);
+
+        resultsElement.innerHTML = "";
+        resultsElement.appendChild(statusDiv);
+        resultsElement.appendChild(pre);
+      }
+
+      // Session Management
+      async function createSession() {
+        try {
+          const response = await fetch(`${API_URL}/api/session`, {
+            method: "POST",
+          });
+
+          const data = await response.json();
+          if (data.success) {
+            currentSessionId = data.session_id;
+            sessionStorage.setItem("session_id", currentSessionId);
+            displayResult(
+              "session-results",
+              true,
+              "Session created successfully",
+              data
+            );
+          } else {
+            displayResult(
+              "session-results",
+              false,
+              "Failed to create session",
+              data
+            );
+          }
+        } catch (error) {
+          displayResult("session-results", false, "Error creating session", {
+            error: error.message,
+          });
+        }
+      }
+
+      async function getSession() {
+        if (!currentSessionId) {
+          displayResult("session-results", false, "No session ID available", {
+            error: "Create a session first",
+          });
+          return;
+        }
+
+        try {
+          const response = await fetch(
+            `${API_URL}/api/session/${currentSessionId}`
+          );
+          const data = await response.json();
+
+          if (data.success) {
+            displayResult(
+              "session-results",
+              true,
+              "Session data retrieved",
+              data
+            );
+          } else {
+            displayResult(
+              "session-results",
+              false,
+              "Failed to get session data",
+              data
+            );
+          }
+        } catch (error) {
+          displayResult("session-results", false, "Error getting session", {
+            error: error.message,
+          });
+        }
+      }
+
+      async function updateSession() {
+        if (!currentSessionId) {
+          displayResult("session-results", false, "No session ID available", {
+            error: "Create a session first",
+          });
+          return;
+        }
+
+        try {
+          const updateData = {
+            user_info: {
+              name: "Test User",
+              email: "test@example.com",
+              phone: "123-456-7890",
+            },
+            test_timestamp: new Date().toISOString(),
+          };
+
+          const response = await fetch(
+            `${API_URL}/api/session/${currentSessionId}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(updateData),
+            }
+          );
+
+          const data = await response.json();
+          if (data.success) {
+            displayResult(
+              "session-results",
+              true,
+              "Session updated successfully",
+              data
+            );
+          } else {
+            displayResult(
+              "session-results",
+              false,
+              "Failed to update session",
+              data
+            );
+          }
+        } catch (error) {
+          displayResult("session-results", false, "Error updating session", {
+            error: error.message,
+          });
+        }
+      }
+
+      // Event Data
+      async function getAllEvents() {
+        try {
+          const response = await fetch(`${API_URL}/api/events`);
+          const data = await response.json();
+
+          if (data.success) {
+            displayResult(
+              "event-results",
+              true,
+              "Events retrieved successfully",
+              data
+            );
+          } else {
+            displayResult(
+              "event-results",
+              false,
+              "Failed to retrieve events",
+              data
+            );
+          }
+        } catch (error) {
+          displayResult("event-results", false, "Error getting events", {
+            error: error.message,
+          });
+        }
+      }
+
+      async function getEvent(eventId) {
+        try {
+          const response = await fetch(`${API_URL}/api/events/${eventId}`);
+          const data = await response.json();
+
+          if (data.success) {
+            displayResult(
+              "event-results",
+              true,
+              `Event ${eventId} retrieved successfully`,
+              data
+            );
+          } else {
+            displayResult(
+              "event-results",
+              false,
+              `Failed to retrieve event ${eventId}`,
+              data
+            );
+          }
+        } catch (error) {
+          displayResult("event-results", false, "Error getting event", {
+            error: error.message,
+          });
+        }
+      }
+
+      // Booking Flow
+      async function createBooking() {
+        if (!currentSessionId) {
+          await createSession();
+        }
+
+        try {
+          const seatData = {
+            session_id: currentSessionId,
+            event_id: "event1",
+            selected_seats: [
+              {
+                id: "A1",
+                row: "A",
+                number: "1",
+                price: 50.0,
+                type: "Standard",
+              },
+              {
+                id: "A2",
+                row: "A",
+                number: "2",
+                price: 50.0,
+                type: "Standard",
+              },
+            ],
+          };
+
+          const response = await fetch(`${API_URL}/api/booking/seats`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(seatData),
+          });
+
+          const data = await response.json();
+          if (data.success) {
+            currentBookingId = data.booking_id;
+            sessionStorage.setItem("booking_id", currentBookingId);
+            displayResult(
+              "booking-results",
+              true,
+              "Booking created successfully",
+              data
+            );
+          } else {
+            displayResult(
+              "booking-results",
+              false,
+              "Failed to create booking",
+              data
+            );
+          }
+        } catch (error) {
+          displayResult("booking-results", false, "Error creating booking", {
+            error: error.message,
+          });
+        }
+      }
+
+      async function processPayment() {
+        if (!currentSessionId || !currentBookingId) {
+          displayResult(
+            "booking-results",
+            false,
+            "Session or booking ID missing",
+            {
+              error: "Create a session and booking first",
+            }
+          );
+          return;
+        }
+
+        try {
+          const paymentData = {
+            session_id: currentSessionId,
+            booking_id: currentBookingId,
+            payment_method: "credit_card",
+          };
+
+          const response = await fetch(`${API_URL}/api/booking/payment`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(paymentData),
+          });
+
+          const data = await response.json();
+          if (data.success) {
+            displayResult(
+              "booking-results",
+              true,
+              "Payment processed successfully",
+              data
+            );
+          } else {
+            displayResult(
+              "booking-results",
+              false,
+              "Failed to process payment",
+              data
+            );
+          }
+        } catch (error) {
+          displayResult("booking-results", false, "Error processing payment", {
+            error: error.message,
+          });
+        }
+      }
+
+      // Navigation Tests
+      async function testRedirectToPayment() {
+        try {
+          const response = await fetch(`${API_URL}/api/redirect/to-payment`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              session_id: currentSessionId || "test-session",
+              selected_seats: [
+                {
+                  id: "A1",
+                  row: "A",
+                  number: "1",
+                  price: 50.0,
+                  type: "Standard",
+                },
+              ],
+            }),
+          });
+
+          const data = await response.json();
+          if (data.success) {
+            displayResult(
+              "redirect-results",
+              true,
+              "Redirect to payment successful",
+              {
+                redirect_url: data.redirect_url,
+                note: 'To actually redirect, click the "Payment Method" link below',
+              }
+            );
+          } else {
+            displayResult(
+              "redirect-results",
+              false,
+              "Failed to get redirect URL",
+              data
+            );
+          }
+        } catch (error) {
+          displayResult("redirect-results", false, "Error testing redirect", {
+            error: error.message,
+          });
+        }
+      }
+
+      async function testRedirectToTicket() {
+        displayResult("redirect-results", true, "Redirect to ticket info", {
+          url: `${API_URL}/redirect/ticket`,
+          note: "Click this URL to test the server-side redirect",
+        });
+      }
+
+      async function testRedirectToDashboard() {
+        displayResult("redirect-results", true, "Redirect to dashboard info", {
+          url: `${API_URL}/redirect/dashboard`,
+          note: "Click this URL to test the server-side redirect",
+        });
+      }
+
+      // Initialize on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        // Check for existing session ID in storage
+        const storedSessionId = sessionStorage.getItem("session_id");
+        if (storedSessionId) {
+          currentSessionId = storedSessionId;
+          displayResult("session-results", true, "Existing session found", {
+            session_id: currentSessionId,
+          });
+        }
+
+        const storedBookingId = sessionStorage.getItem("booking_id");
+        if (storedBookingId) {
+          currentBookingId = storedBookingId;
+          displayResult("booking-results", true, "Existing booking found", {
+            booking_id: currentBookingId,
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

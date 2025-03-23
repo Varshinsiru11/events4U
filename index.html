@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content="2;URL='Signup and Login/index.html'" />
+    <title>EventHub - Redirecting</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        color: white;
+        overflow: hidden;
+      }
+      .redirect-container {
+        text-align: center;
+        padding: 2rem;
+        max-width: 500px;
+        animation: fadeIn 0.5s ease-out;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        font-weight: bold;
+      }
+      .logo i {
+        background: linear-gradient(135deg, #3b82f6, #a855f7);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-right: 0.5rem;
+        font-size: 2.5rem;
+      }
+      .message {
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+      .loader {
+        width: 100%;
+        height: 4px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+      }
+      .loader::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 30%;
+        background: linear-gradient(90deg, #3b82f6, #a855f7);
+        animation: loading 2s ease-in-out infinite;
+        border-radius: 2px;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+      }
+      @keyframes loading {
+        0% {
+          left: -30%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+      }
+      .particle {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: float 15s infinite ease-in-out;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0);
+        }
+        25% {
+          transform: translateY(-30px) translateX(15px);
+        }
+        50% {
+          transform: translateY(20px) translateX(30px);
+        }
+        75% {
+          transform: translateY(10px) translateX(-15px);
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="particles" id="particles"></div>
+    <div class="redirect-container">
+      <div class="logo">
+        <i class="fas fa-calendar-check"></i>
+        <span>EventHub</span>
+      </div>
+      <div class="message">
+        <p>Connecting you to extraordinary events...</p>
+      </div>
+      <div class="loader"></div>
+    </div>
+
+    <script>
+      // Create particle background
+      const particles = document.getElementById("particles");
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement("div");
+        particle.classList.add("particle");
+
+        // Random size between 5px and 30px
+        const size = Math.random() * 25 + 5;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+
+        // Random position
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.left = `${Math.random() * 100}%`;
+
+        // Random opacity
+        particle.style.opacity = Math.random() * 0.2 + 0.1;
+
+        // Random animation duration and delay
+        const duration = Math.random() * 10 + 5;
+        const delay = Math.random() * 5;
+        particle.style.animation = `float ${duration}s infinite ease-in-out ${delay}s`;
+
+        particles.appendChild(particle);
+      }
+    </script>
+  </body>
+</html>
