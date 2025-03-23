@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Seat Booking</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main-container">
+      <header>
+        <div class="logo"><i class="fas fa-ticket-alt"></i> SEATS</div>
+        <nav>
+          <a href="../event-dashboard/index.html">Dashboard</a>
+          <a href="../event-booking/index.html">Events</a>
+          <a href="index.html" class="active">Seat Booking</a>
+        </nav>
+      </header>
+
+      <!-- Testing Links -->
+      <div
+        style="
+          background: #333;
+          color: white;
+          padding: 10px;
+          text-align: center;
+          margin-bottom: 20px;
+        "
+      >
+        <p>Troubleshooting Links:</p>
+        <a
+          href="../payment-method/index.html"
+          style="color: yellow; margin-right: 20px"
+          >Direct Link to Payment Page</a
+        >
+        <a href="path-test.html" style="color: yellow">Test Redirect Page</a>
+      </div>
+
+      <div class="event-container">
+        <div class="booking-header">
+          <h1>Select Your Seats</h1>
+          <p>
+            Pick your preferred seats for
+            <span id="event-name">Music Festival 2025</span>
+          </p>
+        </div>
+
+        <div class="auditorium">
+          <div class="stage">
+            <div class="stage-label">STAGE</div>
+          </div>
+
+          <div class="seat-legend">
+            <div class="legend-item">
+              <div class="legend-color available"></div>
+              <span>Available</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color selected"></div>
+              <span>Selected</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color confirmed"></div>
+              <span>Confirmed</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color booked"></div>
+              <span>Booked</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color premium"></div>
+              <span>Premium</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color vip"></div>
+              <span>VIP</span>
+            </div>
+          </div>
+
+          <div class="seat-map-container">
+            <div class="seat-map">
+              <!-- Seats will be generated dynamically here -->
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-summary">
+          <div class="selected-seats">
+            <h3>Selected Seats</h3>
+            <div id="selected-seats-list">
+              <p class="no-seats">No seats selected</p>
+            </div>
+          </div>
+          <div class="pricing">
+            <h3>Summary</h3>
+            <div class="price-details">
+              <div class="price-row">
+                <span>Seats (<span id="seat-count">0</span>)</span>
+                <span id="seat-total">$0.00</span>
+              </div>
+              <div class="price-row">
+                <span>Booking Fee</span>
+                <span id="booking-fee">$0.00</span>
+              </div>
+              <div class="price-row total">
+                <span>Total</span>
+                <span id="total-price">$0.00</span>
+              </div>
+            </div>
+          </div>
+          <button id="proceed-btn" disabled>
+            <span class="proceed-btn-text">Continue to Payment</span>
+            <i class="fas fa-chevron-circle-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="seat-tooltip" id="seat-tooltip">
+        <div class="tooltip-content">
+          <div class="seat-info">
+            <span class="seat-section">Section A</span>
+            <span class="seat-number">A12</span>
+          </div>
+          <div class="seat-price">$50.00</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="debug.js"></script>
+  </body>
+</html>

@@ -1,0 +1,527 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+/* Base Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  min-height: 100vh;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Background Animation */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: url("https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80")
+    center/cover;
+  opacity: 0.15;
+  filter: blur(3px);
+  animation: float-bg 15s infinite alternate ease-in-out;
+}
+
+@keyframes float-bg {
+  0% {
+    transform: scale(1.02) translate(-10px, -10px);
+  }
+  50% {
+    transform: scale(1.05) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.02) translate(10px, 10px);
+  }
+}
+
+/* Navbar Styles */
+.navbar {
+  background: linear-gradient(90deg, #1a237e, #283593) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 10;
+}
+
+.navbar-brand,
+.nav-link {
+  color: white !important;
+}
+
+.nav-link:hover {
+  color: #81d4fa !important;
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler {
+  border-color: white;
+}
+
+/* Payment Container */
+.payment-container {
+  margin-bottom: 50px;
+  animation: fadeInUp 0.8s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Event Summary Card */
+.event-summary {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.event-summary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.event-summary .card-header {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  border: none;
+  padding: 1.2rem 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-summary .card-header::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 60%
+  );
+  opacity: 0.7;
+  transform: rotate(30deg);
+}
+
+.event-summary .card-body {
+  padding: 1.5rem;
+}
+
+.event-image {
+  height: 180px;
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.event-image::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+  z-index: 1;
+}
+
+.event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.event-image:hover img {
+  transform: scale(1.05);
+}
+
+.order-summary {
+  background-color: rgba(243, 244, 246, 0.5);
+  padding: 1.2rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.order-summary p {
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.order-summary p i {
+  color: #4f46e5;
+  font-size: 1.1rem;
+}
+
+.price-summary {
+  margin-top: 20px;
+  background: #f0f7ff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 255, 0.1);
+}
+
+/* Payment Options Card */
+.payment-options {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: none;
+  position: relative;
+  z-index: 2;
+}
+
+.payment-options:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.payment-options .card-header {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  border: none;
+  padding: 1.2rem 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.payment-options .card-header::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 60%
+  );
+  opacity: 0.7;
+  transform: rotate(30deg);
+}
+
+.payment-options .card-body {
+  padding: 1.5rem;
+}
+
+/* Tabs Styling */
+.nav-tabs {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 5px;
+  padding-bottom: 1px;
+  scrollbar-width: none;
+}
+
+.nav-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px 10px 0 0;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background-color: rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  position: relative;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-tabs .nav-link i {
+  font-size: 1.1rem;
+}
+
+.nav-tabs .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4f46e5, #7c3aed);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-tabs .nav-link.active {
+  color: #4f46e5;
+  background-color: transparent;
+  border: none;
+  font-weight: 600;
+}
+
+.nav-tabs .nav-link.active::after {
+  width: 80%;
+}
+
+.nav-tabs .nav-link:hover:not(.active) {
+  color: #4f46e5;
+  background-color: rgba(79, 70, 229, 0.05);
+}
+
+/* Tab Content Animation */
+.tab-pane {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* QR Code Styling */
+.qr-container {
+  width: 200px;
+  height: 200px;
+  padding: 15px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 255, 0.15);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+  border: 3px solid #e3f2fd;
+}
+
+.qr-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 255, 0.2);
+}
+
+.qr-instruction {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #e3f2fd;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+}
+
+.step i {
+  font-size: 24px;
+  color: #1e40af;
+  margin-bottom: 5px;
+  background: white;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 255, 0.1);
+}
+
+/* UPI Apps Styling */
+.upi-apps {
+  margin-top: 20px;
+  background: #e3f2fd;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.upi-app {
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  background: white;
+  margin-bottom: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.upi-app:hover {
+  background: white;
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 255, 0.15);
+}
+
+.app-icon {
+  font-size: 30px;
+  margin-bottom: 5px;
+  color: #1e40af;
+  transition: all 0.3s ease;
+}
+
+.upi-app:hover .app-icon {
+  transform: scale(1.2);
+}
+
+.app-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Form Controls */
+.form-control,
+.form-select {
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 2px solid #e3f2fd;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+  background: white;
+}
+
+.form-label {
+  color: #1e40af;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
+  border: none;
+  border-radius: 30px;
+  padding: 12px 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 255, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 255, 0.3);
+}
+
+/* Selected UPI App Styling */
+.upi-app.selected {
+  background: #e3f2fd;
+  border: 2px solid #3b82f6;
+  box-shadow: 0 5px 15px rgba(0, 0, 255, 0.2);
+}
+
+.upi-app.selected .app-icon {
+  color: #2563eb;
+}
+
+/* Footer */
+footer {
+  background: linear-gradient(90deg, #1a237e, #283593) !important;
+  padding: 20px 0;
+  margin-top: 50px;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Details Styling */
+#cardForm {
+  background: #e3f2fd;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+/* Net Banking Styling */
+#netbanking {
+  background: #e3f2fd;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .event-summary {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .step {
+    font-size: 12px;
+  }
+
+  .qr-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .nav-tabs .nav-link {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}

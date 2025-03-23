@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventHub - Login & Signup</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="background-animation"></div>
+
+      <div class="form-container">
+        <div class="logo">
+          <i class="fas fa-ticket-alt"></i>
+          <span>EventHub</span>
+        </div>
+
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="login">Sign In</button>
+          <button class="tab-btn" data-tab="signup">Sign Up</button>
+        </div>
+
+        <div class="form-wrapper">
+          <!-- Login Form -->
+          <form id="loginForm" class="active">
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Please enter your credentials to continue</p>
+
+            <div class="input-group">
+              <div class="input-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <input
+                type="email"
+                id="loginEmail"
+                placeholder="Email Address"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <div class="input-icon">
+                <i class="fas fa-lock"></i>
+              </div>
+              <input
+                type="password"
+                id="loginPassword"
+                placeholder="Password"
+                required
+              />
+              <div class="toggle-password">
+                <i class="fas fa-eye"></i>
+              </div>
+            </div>
+
+            <div class="options">
+              <label class="remember-me">
+                <input type="checkbox" id="rememberMe" />
+                <span>Remember me</span>
+              </label>
+              <a href="../password-reset/index.html" class="forgot-password"
+                >Forgot Password?</a
+              >
+            </div>
+
+            <p id="loginError" class="error-message"></p>
+
+            <button type="submit" class="btn-submit">
+              <span>Sign In</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
+
+            <div class="divider">
+              <span>or continue with</span>
+            </div>
+
+            <div class="social-login">
+              <button type="button" class="social-btn google">
+                <i class="fab fa-google"></i>
+              </button>
+              <button type="button" class="social-btn facebook">
+                <i class="fab fa-facebook-f"></i>
+              </button>
+              <button type="button" class="social-btn twitter">
+                <i class="fab fa-twitter"></i>
+              </button>
+            </div>
+          </form>
+
+          <!-- Signup Form -->
+          <form id="signupForm">
+            <h2>Create Account</h2>
+            <p class="subtitle">Please fill in your details to get started</p>
+
+            <div class="input-group">
+              <div class="input-icon">
+                <i class="fas fa-user"></i>
+              </div>
+              <input
+                type="text"
+                id="fullName"
+                placeholder="Full Name"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <div class="input-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <input
+                type="email"
+                id="email"
+                placeholder="Email Address"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <div class="input-icon">
+                <i class="fas fa-lock"></i>
+              </div>
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+              <div class="toggle-password">
+                <i class="fas fa-eye"></i>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="input-icon">
+                <i class="fas fa-lock"></i>
+              </div>
+              <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm Password"
+                required
+              />
+              <div class="toggle-password">
+                <i class="fas fa-eye"></i>
+              </div>
+            </div>
+
+            <div class="terms">
+              <label>
+                <input type="checkbox" id="agreeTerms" required />
+                <span
+                  >I agree to the <a href="#">Terms of Service</a> and
+                  <a href="#">Privacy Policy</a></span
+                >
+              </label>
+            </div>
+
+            <p id="signupError" class="error-message"></p>
+
+            <button type="submit" class="btn-submit">
+              <span>Create Account</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
+
+            <div class="divider">
+              <span>or sign up with</span>
+            </div>
+
+            <div class="social-login">
+              <button type="button" class="social-btn google">
+                <i class="fab fa-google"></i>
+              </button>
+              <button type="button" class="social-btn facebook">
+                <i class="fab fa-facebook-f"></i>
+              </button>
+              <button type="button" class="social-btn twitter">
+                <i class="fab fa-twitter"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="event-preview">
+        <div class="preview-content">
+          <h1>Experience Events Like Never Before</h1>
+          <p>
+            Join thousands of users booking the best concerts, festivals, and
+            shows with ease.
+          </p>
+          <div class="feature-list">
+            <div class="feature">
+              <i class="fas fa-ticket-alt"></i>
+              <span>Seamless Booking</span>
+            </div>
+            <div class="feature">
+              <i class="fas fa-chair"></i>
+              <span>Interactive Seat Selection</span>
+            </div>
+            <div class="feature">
+              <i class="fas fa-credit-card"></i>
+              <span>Secure Payments</span>
+            </div>
+            <div class="feature">
+              <i class="fas fa-qrcode"></i>
+              <span>Digital Tickets</span>
+            </div>
+          </div>
+        </div>
+        <div class="event-cards">
+          <div class="event-card">
+            <div class="card-content">
+              <h3>Music Festival 2023</h3>
+              <p><i class="fas fa-map-marker-alt"></i> Central Park, NY</p>
+              <p><i class="fas fa-calendar"></i> Aug 15-17, 2023</p>
+            </div>
+          </div>
+          <div class="event-card">
+            <div class="card-content">
+              <h3>Tech Conference</h3>
+              <p><i class="fas fa-map-marker-alt"></i> Convention Center</p>
+              <p><i class="fas fa-calendar"></i> Sep 5, 2023</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

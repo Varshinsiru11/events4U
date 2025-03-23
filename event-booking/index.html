@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Booking</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="../event-dashboard/index.html" class="nav-logo"
+          >Event Manager</a
+        >
+        <ul class="nav-links">
+          <li><a href="../event-dashboard/index.html">Browse Events</a></li>
+          <li><a href="../ticket/index.html">My Tickets</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="event-container">
+      <div class="event-card">
+        <div class="back-button">
+          <a href="../event-dashboard/index.html"
+            ><i class="fas fa-arrow-left"></i> Back to Events</a
+          >
+        </div>
+        <img
+          src="https://media.istockphoto.com/id/1189205501/photo/cheering-crowd-of-unrecognized-people-at-a-rock-music-concert-concert-crowd-in-front-of.jpg?s=612x612&w=0&k=20&c=_vgyStdIBHCbnDHdu3lNTwfJxt2fTcJc9PB345ryhZo="
+          alt="Event Image"
+        />
+        <div class="event-content">
+          <h2>Music Festival 2025</h2>
+          <div class="event-details">
+            <div class="detail-item">
+              <i class="fas fa-calendar"></i>
+              <p><strong>Date:</strong> April 15, 2025</p>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-clock"></i>
+              <p><strong>Time:</strong> 8:00 PM</p>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <p><strong>Location:</strong> Central Park, NYC</p>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-building"></i>
+              <p><strong>Venue:</strong> Grand Stage Arena</p>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-tag"></i>
+              <p><strong>Price:</strong> $50 per seat</p>
+            </div>
+          </div>
+          <p class="event-description">
+            Experience an unforgettable night of live performances, DJs, and
+            incredible music. Book your tickets now!
+          </p>
+          <div class="action-buttons">
+            <button class="book-now" id="bookEvent">Book Now</button>
+            <button class="browse-events" id="bookNowBtn">
+              View All Events
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <p>&copy; 2024 Event Manager. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="../event-dashboard/index.html">Home</a>
+          <a href="../ticket/index.html">My Tickets</a>
+          <a href="#">Terms & Conditions</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

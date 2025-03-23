@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Path Test</title>
+  </head>
+  <body>
+    <h1>Redirect Test</h1>
+    <p>Click the button to test redirect to payment page:</p>
+    <button onclick="redirectToPayment()">Go to Payment</button>
+
+    <script>
+      function redirectToPayment() {
+        console.log("Attempting to redirect to payment page...");
+        window.location.href = "../payment-method/index.html";
+      }
+    </script>
+  </body>
+</html>

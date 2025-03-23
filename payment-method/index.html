@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Method</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black shadow">
+      <div class="container">
+        <a class="navbar-brand" href="#">Event Manager</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">My Bookings</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Payment Container -->
+    <div class="container payment-container mt-5">
+      <div class="row">
+        <!-- Left Side - Event Details -->
+        <div class="col-md-4">
+          <div class="card event-summary">
+            <div class="card-header">
+              <h4>Event Summary</h4>
+            </div>
+            <div class="card-body">
+              <div class="event-image">
+                <img
+                  src="https://media.istockphoto.com/id/1189205501/photo/cheering-crowd-of-unrecognized-people-at-a-rock-music-concert-concert-crowd-in-front-of.jpg?s=612x612&w=0&k=20&c=_vgyStdIBHCbnDHdu3lNTwfJxt2fTcJc9PB345ryhZo="
+                  alt="Event"
+                />
+              </div>
+              <h5 class="mt-3">Music Festival 2025</h5>
+              <p><i class="far fa-calendar"></i> April 15, 2025</p>
+              <p><i class="fas fa-map-marker-alt"></i> Central Park, NYC</p>
+              <p><i class="fas fa-ticket-alt"></i> 2 Tickets</p>
+              <hr />
+              <div class="price-summary">
+                <div class="d-flex justify-content-between">
+                  <span>Tickets (2x $50)</span>
+                  <span>$100.00</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span>Service Fee</span>
+                  <span>$10.00</span>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                  <strong>Total</strong>
+                  <strong>$110.00</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side - Payment Options -->
+        <div class="col-md-8">
+          <div class="card payment-options">
+            <div class="card-header">
+              <h4>Choose Payment Method</h4>
+            </div>
+            <div class="card-body">
+              <!-- Payment Tabs -->
+              <ul class="nav nav-tabs" id="paymentTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link active"
+                    id="qr-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#qr"
+                    type="button"
+                    role="tab"
+                    aria-selected="true"
+                  >
+                    <i class="fas fa-qrcode"></i> QR Code
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="upi-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#upi"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                  >
+                    <i class="fas fa-mobile-alt"></i> UPI
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="card-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#card"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                  >
+                    <i class="far fa-credit-card"></i> Card
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="netbanking-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#netbanking"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                  >
+                    <i class="fas fa-university"></i> Net Banking
+                  </button>
+                </li>
+              </ul>
+
+              <!-- Tab Content -->
+              <div class="tab-content mt-4" id="paymentTabContent">
+                <!-- QR Code Tab -->
+                <div
+                  class="tab-pane fade show active"
+                  id="qr"
+                  role="tabpanel"
+                  aria-labelledby="qr-tab"
+                >
+                  <div class="text-center">
+                    <div id="qrcode" class="qr-container mx-auto mb-3"></div>
+                    <p>Scan the QR code using any UPI app</p>
+                    <div class="qr-instruction">
+                      <div class="step">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Open UPI App</span>
+                      </div>
+                      <div class="step">
+                        <i class="fas fa-qrcode"></i>
+                        <span>Scan QR</span>
+                      </div>
+                      <div class="step">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Pay</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- UPI Tab -->
+                <div
+                  class="tab-pane fade"
+                  id="upi"
+                  role="tabpanel"
+                  aria-labelledby="upi-tab"
+                >
+                  <form>
+                    <div class="mb-3">
+                      <label for="upiId" class="form-label">Enter UPI ID</label>
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="upiId"
+                          placeholder="yourname@upi"
+                        />
+                        <button
+                          class="btn btn-primary"
+                          type="button"
+                          id="verifyUpi"
+                        >
+                          Verify
+                        </button>
+                      </div>
+                    </div>
+                    <div class="upi-apps mt-4">
+                      <h6>Pay using UPI Apps</h6>
+                      <div class="row mt-3">
+                        <div class="col-3 text-center upi-app" data-app="gpay">
+                          <div class="app-icon">
+                            <i class="fab fa-google-pay"></i>
+                          </div>
+                          <div class="app-name">Google Pay</div>
+                        </div>
+                        <div
+                          class="col-3 text-center upi-app"
+                          data-app="phonepe"
+                        >
+                          <div class="app-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                          </div>
+                          <div class="app-name">PhonePe</div>
+                        </div>
+                        <div class="col-3 text-center upi-app" data-app="paytm">
+                          <div class="app-icon">
+                            <i class="fas fa-wallet"></i>
+                          </div>
+                          <div class="app-name">Paytm</div>
+                        </div>
+                        <div class="col-3 text-center upi-app" data-app="other">
+                          <div class="app-icon">
+                            <i class="fas fa-ellipsis-h"></i>
+                          </div>
+                          <div class="app-name">Others</div>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      class="btn btn-primary mt-4 w-100"
+                      id="payUpiBtn"
+                    >
+                      Pay $110.00
+                    </button>
+                  </form>
+                </div>
+
+                <!-- Card Tab -->
+                <div
+                  class="tab-pane fade"
+                  id="card"
+                  role="tabpanel"
+                  aria-labelledby="card-tab"
+                >
+                  <form id="cardForm">
+                    <div class="mb-3">
+                      <label for="cardNumber" class="form-label"
+                        >Card Number</label
+                      >
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="cardNumber"
+                          placeholder="1234 5678 9012 3456"
+                          maxlength="19"
+                        />
+                        <span class="input-group-text">
+                          <i class="fab fa-cc-visa"></i>
+                          <i class="fab fa-cc-mastercard"></i>
+                          <i class="fab fa-cc-amex"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="cardExpiry" class="form-label"
+                          >Expiry Date</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="cardExpiry"
+                          placeholder="MM/YY"
+                          maxlength="5"
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="cardCvv" class="form-label">CVV</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="cardCvv"
+                          placeholder="123"
+                          maxlength="3"
+                        />
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="cardName" class="form-label"
+                        >Name on Card</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="cardName"
+                        placeholder="John Doe"
+                      />
+                    </div>
+                    <div class="mb-3 form-check">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="saveCard"
+                      />
+                      <label class="form-check-label" for="saveCard"
+                        >Save card for future payments</label
+                      >
+                    </div>
+                    <button
+                      type="button"
+                      class="btn btn-primary w-100"
+                      id="payCardBtn"
+                    >
+                      Pay $110.00
+                    </button>
+                  </form>
+                </div>
+
+                <!-- Net Banking Tab -->
+                <div
+                  class="tab-pane fade"
+                  id="netbanking"
+                  role="tabpanel"
+                  aria-labelledby="netbanking-tab"
+                >
+                  <div class="mb-3">
+                    <label class="form-label">Select Bank</label>
+                    <select class="form-select" id="bankSelect">
+                      <option value="">Select a bank</option>
+                      <option value="sbi">State Bank of India</option>
+                      <option value="hdfc">HDFC Bank</option>
+                      <option value="icici">ICICI Bank</option>
+                      <option value="axis">Axis Bank</option>
+                      <option value="kotak">Kotak Mahindra Bank</option>
+                      <option value="other">Other Banks</option>
+                    </select>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-primary w-100 mt-3"
+                    id="payNetbankingBtn"
+                  >
+                    Pay $110.00
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+      <p>© 2025 Event Manager. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

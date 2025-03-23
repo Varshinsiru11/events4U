@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premium Event Ticket</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Premium Event Ticket</h1>
+        <p>Generate your downloadable premium ticket below</p>
+      </div>
+
+      <div class="ticket-container">
+        <div class="ticket-form">
+          <h2><i class="fas fa-ticket-alt"></i> Ticket Information</h2>
+          <form id="ticketForm">
+            <div class="form-group">
+              <label for="eventName">Event</label>
+              <select id="eventName" required>
+                <option value="">Select an event</option>
+                <option value="Music Festival 2025">Music Festival 2025</option>
+                <option value="Tech Conference 2025">
+                  Tech Conference 2025
+                </option>
+                <option value="Art Exhibition">Art Exhibition</option>
+                <option value="Sports Championship">Sports Championship</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="ticketType">Ticket Type</label>
+              <select id="ticketType" required>
+                <option value="">Select ticket type</option>
+                <option value="VIP">VIP</option>
+                <option value="Premium">Premium</option>
+                <option value="Standard">Standard</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  placeholder="John Doe"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="age">Age</label>
+                <input
+                  type="number"
+                  id="age"
+                  min="1"
+                  max="120"
+                  placeholder="25"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" required>
+                  <option value="">Select gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="seatNumber">Seat Number</label>
+                <input type="text" id="seatNumber" placeholder="A12" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="john@example.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                placeholder="+1 234 567 8900"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="ticketDate">Date</label>
+                <input type="date" id="ticketDate" required />
+              </div>
+              <div class="form-group">
+                <label for="ticketTime">Time</label>
+                <input type="time" id="ticketTime" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="venue">Venue</label>
+              <input
+                type="text"
+                id="venue"
+                placeholder="Grand Stadium, New York"
+                required
+              />
+            </div>
+            <button type="submit" class="generate-btn">
+              <i class="fas fa-wand-magic-sparkles"></i> Generate Ticket
+            </button>
+          </form>
+        </div>
+
+        <div class="ticket-preview-container">
+          <h2><i class="fas fa-eye"></i> Ticket Preview</h2>
+          <div id="ticketPreview" class="ticket">
+            <div class="ticket-header">
+              <div class="logo">
+                <div class="logo-icon"><i class="fas fa-star"></i></div>
+                <div class="logo-text">PREMIUM</div>
+              </div>
+              <div class="ticket-title">
+                <h2 id="previewEventName">Music Festival 2025</h2>
+                <span id="previewTicketType" class="ticket-type"
+                  >VIP ACCESS</span
+                >
+              </div>
+            </div>
+
+            <div class="ticket-body">
+              <div class="ticket-details">
+                <div class="detail-row">
+                  <div class="detail-item">
+                    <span class="detail-label">Name</span>
+                    <span id="previewName" class="detail-value">John Doe</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Seat</span>
+                    <span id="previewSeat" class="detail-value">A12</span>
+                  </div>
+                </div>
+                <div class="detail-row">
+                  <div class="detail-item">
+                    <span class="detail-label">Age</span>
+                    <span id="previewAge" class="detail-value">25</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Gender</span>
+                    <span id="previewGender" class="detail-value">Male</span>
+                  </div>
+                </div>
+                <div class="detail-row">
+                  <div class="detail-item">
+                    <span class="detail-label">Date</span>
+                    <span id="previewDate" class="detail-value"
+                      >Dec 31, 2025</span
+                    >
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Time</span>
+                    <span id="previewTime" class="detail-value">8:00 PM</span>
+                  </div>
+                </div>
+                <div class="detail-row">
+                  <div class="detail-item full-width">
+                    <span class="detail-label">Venue</span>
+                    <span id="previewVenue" class="detail-value"
+                      >Grand Stadium, New York</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="ticket-qr">
+                <div id="qrcode"></div>
+                <div class="ticket-id">
+                  <span class="detail-label">Ticket ID</span>
+                  <span id="previewTicketId" class="detail-value"
+                    >TKT82731958</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="ticket-footer">
+              <div class="contact-info">
+                <div>
+                  <i class="fas fa-envelope"></i>
+                  <span id="previewEmail">john@example.com</span>
+                </div>
+                <div>
+                  <i class="fas fa-phone"></i>
+                  <span id="previewPhone">+1 234 567 8900</span>
+                </div>
+              </div>
+              <div class="ticket-hologram">
+                <div class="hologram-element"></div>
+              </div>
+            </div>
+
+            <div class="ticket-decoration">
+              <div class="corner top-left"></div>
+              <div class="corner top-right"></div>
+              <div class="corner bottom-left"></div>
+              <div class="corner bottom-right"></div>
+              <div class="edge left-edge"></div>
+              <div class="edge right-edge"></div>
+              <div class="edge top-edge"></div>
+              <div class="edge bottom-edge"></div>
+            </div>
+          </div>
+
+          <div class="download-options">
+            <button id="downloadPDF" class="download-btn" disabled>
+              <i class="fas fa-file-pdf"></i> Download as PDF
+            </button>
+            <button id="downloadImage" class="download-btn" disabled>
+              <i class="fas fa-image"></i> Download as Image
+            </button>
+            <a href="../event-dashboard/index.html" class="back-btn">
+              <i class="fas fa-home"></i> Back to Dashboard
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div>© 2025 Premium Event Tickets. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="../event-dashboard/index.html">Dashboard</a>
+          <a href="../payment-method/index.html">Payment</a>
+          <a href="#">Terms & Conditions</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

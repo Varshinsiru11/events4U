@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Method Debug</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+      }
+      .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        background: #4f46e5;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+      .btn:hover {
+        background: #3730a3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Payment Method Debug Page</h1>
+      <p>This page is used to test navigation between pages.</p>
+
+      <h2>Navigation Links</h2>
+      <div>
+        <a href="../seat-booking/index.html" class="btn">Go to Seat Booking</a>
+        <a href="index.html" class="btn">Go to Payment Method Page</a>
+        <a href="../event-dashboard/index.html" class="btn"
+          >Go to Event Dashboard</a
+        >
+      </div>
+
+      <h2>Navigation Tests</h2>
+      <div>
+        <button
+          onclick="testNavigation('../seat-booking/index.html')"
+          class="btn"
+        >
+          Test Navigation to Seat Booking
+        </button>
+        <button onclick="testNavigation('index.html')" class="btn">
+          Test Navigation to Payment Method
+        </button>
+      </div>
+
+      <div
+        id="log"
+        style="
+          margin-top: 20px;
+          padding: 10px;
+          background: #f0f0f0;
+          border-radius: 5px;
+          height: 200px;
+          overflow: auto;
+        "
+      >
+        <p>Debug Log:</p>
+      </div>
+    </div>
+
+    <script>
+      // Log function
+      function log(message) {
+        const logElement = document.getElementById("log");
+        const entry = document.createElement("div");
+        entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+        logElement.appendChild(entry);
+        console.log(message);
+      }
+
+      // Navigation test function
+      function testNavigation(url) {
+        log(`Testing navigation to: ${url}`);
+
+        try {
+          // Get current location
+          const currentLocation = window.location.href;
+          log(`Current location: ${currentLocation}`);
+
+          // Log the target URL
+          log(`Target URL: ${url}`);
+
+          // Attempt navigation after a delay
+          log("Will attempt navigation in 2 seconds...");
+          setTimeout(() => {
+            log("Executing navigation now");
+            window.location.href = url;
+          }, 2000);
+        } catch (error) {
+          log(`Error during navigation test: ${error.message}`);
+        }
+      }
+
+      // Log page load
+      window.addEventListener("load", () => {
+        log("Debug page loaded successfully");
+      });
+    </script>
+  </body>
+</html>
